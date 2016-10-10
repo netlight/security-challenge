@@ -1,7 +1,7 @@
 <?php
-	include("config.php");
+	include("db/config.php");
 	session_start();
-   
+
 	if (isset($_POST['username']) and isset($_POST['password'])) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
@@ -50,13 +50,14 @@
 	} ?>
 
 		<div class="container">
-			<form action="" method="post" class="form-signin">
-				<h2 class="form-signin-heading">Please sign in</h2>
+			<form action="" method="post" class="form-login">
+				<h1>Security Challenge</h1>
+				<h3>Please log in</h2>
 				<label for="inputUsername" class="sr-only">Username</label>
 				<input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
 				<label for="inputPassword" class="sr-only">Password</label>
 				<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 			</form>
 		</div>
 	</body>
