@@ -6,12 +6,15 @@ This challenge is about **⁠⁠⁠web application security**⁠⁠⁠. The clue
 
 This website is vulnerable to SQLi, and you are granted permission to attack the application in order to retrieve the clue. **⁠⁠⁠The challenge is to bypass the login and find the clue**⁠⁠⁠ by using the search field that is shown when you are authenticated. You will have to use common SQLi tricks such as `⁠⁠⁠⁠' OR 1=1`⁠⁠⁠⁠ and merge datasets with `⁠⁠⁠⁠UNION`⁠⁠⁠⁠. When you are logged in you need to find a way to get a list of all tables in the database and finally get data from the table which seems to include the most interesting data.
 
-## Login
-**Username:** <code>admin</code>  
-**Password:** <code>' OR 1=1 -- </code> (include the space at the end)
+## Solution
+The solution to this challenge can be found in [SOLUTION.md](SOLUTION.md).
 
-## Search Box -- Get table names
-**Search Input:** <code>' UNION ALL SELECT table_name, 1, 1 FROM information_schema.tables WHERE table_schema=database() -- </code> (include the space at the end)
+## Secure version
+A secure version of this website can be found in the subfolder [secure](secure/). That version is not vulnerable to SQLi.
 
-## Search Box -- Get Challenge Clue
-**Search Input:** <code>' UNION ALL SELECT *, 1 FROM challenge_clue -- </code> (include the space at the end)
+The difference between the secure and the insecure versions of the website can be found [here](https://github.com/netlight/security-challenge/commit/87bd0d6fa68332065a88dc14865bb8c00eb4abf4).
+
+## Setup
+1. Setup a server with PHP and MySQL support.
+
+2. Run [db/security_challenge.sql](db/security_challenge.sql) to create the MySQL database with all the necessary data inserted into the tables. A database user that only is allowed to do ﻿⁠⁠⁠⁠`SELECT`﻿⁠⁠⁠⁠ queries is also created.
