@@ -2,11 +2,13 @@
 	include('session.php');
 	if (isset($_POST['search'])) {
 		$searchInput = $_POST['search'];
-		$query = "SELECT city, address, phone FROM offices WHERE city LIKE '$searchInput'";
+		$stmt = $db->prepare("SELECT city, address, phone FROM offices WHERE city LIKE ?");
+		$stmt->bind_param('s', $searchInput);
 	} else {
-		$query = "SELECT city, address, phone FROM offices";
+		$stmt = $db->prepare("SELECT city, address, phone FROM offices");
 	}
-	$result = $db->query($query);
+	$stmt->execute();
+	$result = $stmt->get_result();
 	if (!$result) {
 		$error = $db->error;
 	}

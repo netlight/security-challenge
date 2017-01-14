@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `security_challenge`
+-- Database: `security_challenge_secure`
 --
-CREATE DATABASE IF NOT EXISTS `security_challenge` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `security_challenge`;
+CREATE DATABASE IF NOT EXISTS `security_challenge_secure` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `security_challenge_secure`;
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'admin', 'Welc0meT0NetlightEdgeC0nferenceInSt0ckh0lm!');
+(1, 'admin', '$2y$10$U1CgqDD8Y4VK5EFoF5H48.hHjNc2kQIjAMLGU1fj9Dsf.iOhn.y4W');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
@@ -97,6 +97,6 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 --
 -- Create database user
 --
-GRANT SELECT ON `security_challenge`.* TO 'sec_user'@'localhost';
+GRANT SELECT ON `security_challenge_secure`.* TO 'sec_user'@'localhost';
 SET PASSWORD FOR 'sec_user'@'localhost' = '*D8D83CD772490A5A5E41D880C313D3AE8C95EB3E';
 FLUSH PRIVILEGES;

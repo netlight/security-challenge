@@ -5,14 +5,15 @@
 	if (isset($_POST['username']) and isset($_POST['password'])) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$query = "SELECT id FROM users WHERE password = '$password' AND username = '$username'";
-		$result = $db->query($query);
+		$stmt = $db->prepare("SELECT password FROM users WHERE username = ?");
+		$stmt->bind_param('s', $username);
+		$stmt->execute();
+		$result = $stmt->get_result();
 		if (!$result) {
 			$error = $db->error;
 		} else {
-			$count = $result->num_rows;
-			// If result matched $username and $password, $count must be 1
-			if ($count == 1) {
+			$row = $result->fetch_assoc();
+			if (password_verify($password, $row['password'])) {
 				$_SESSION['current_user'] = $username;
 				header("location: welcome.php");
 			} else {
